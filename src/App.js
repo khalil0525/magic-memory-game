@@ -26,6 +26,8 @@ function App() {
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }));
 
+    setChoiceOne(null);
+    setChoiceTwo(null);
     setCards(shuffledCards);
     setTurns(0);
   };
@@ -38,8 +40,9 @@ function App() {
   // compare 2 selected cards. If they are the same, turn their matched property to true
   useEffect(() => {
     // If these 2 states variables are set to a card
-    setDisabled(true);
+
     if (choiceOne && choiceTwo) {
+      setDisabled(true);
       // If choiceOne and choiceTwo reference the same image file
       if (choiceOne.src === choiceTwo.src) {
         // Update the state of the card variable
@@ -71,6 +74,11 @@ function App() {
     setDisabled(false);
   };
 
+  // Start a new game automatically
+  useEffect(() => {
+    shuffleCards();
+  }, []);
+
   return (
     <div className="App">
       <h1>Magic Match</h1>
@@ -78,6 +86,7 @@ function App() {
       <div className="card-grid">
         {cards.map((card) => (
           <SingleCard
+            key={card.id}
             card={card}
             onHandleChoice={handleChoice}
             flipped={card === choiceOne || card === choiceTwo || card.matched}
@@ -85,6 +94,7 @@ function App() {
           />
         ))}
       </div>
+      <p>Turns:{turns}</p>
     </div>
   );
 }

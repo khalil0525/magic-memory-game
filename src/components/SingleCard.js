@@ -9,7 +9,7 @@ const SingleCard = (props) => {
 
   return (
     <div className={styles.card} key={props.card.id}>
-      <div className={props.flipped && styles.flipped}>
+      <div className={props.flipped ? styles.flipped : undefined}>
         <img className={styles.front} src={props.card.src} alt="card front" />
         <img
           className={styles.back}
