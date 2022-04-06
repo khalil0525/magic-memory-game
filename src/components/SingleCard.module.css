@@ -1,0 +1,37 @@
+.card {
+  position: relative;
+}
+
+.card img {
+  width: 100%;
+  display: block;
+  border: 2px solid #fff;
+  border-radius: 6px;
+}
+
+/* front of card - the picture */
+
+/* These card fronts are rotated 90 degrees by default, meaning that they are sideways and we can't see them. We use absolute postioning so that the card covers the back image.
+to do this, we had to set position:relative on our card class which is the parent container.*/
+.card .front {
+  transform: rotateY(90deg);
+  transition: all ease-in 0.2s;
+  position: absolute;
+}
+/* When we added the flipped class, the card rotates to 0 deg meaning that it is flat and we can see it */
+.flipped .front {
+  transform: rotateY(0deg);
+  transition-delay: 0.2s;
+}
+
+/* back of card - cover */
+/* With these transitions we are doing the same as above but in reverse. Here we will flip the back of the card to  */
+.card .back {
+  transition: all ease-in 0.2s;
+  transition-delay: 0.2s;
+}
+
+.flipped .back {
+  transform: rotateY(90deg);
+  transition-delay: 0s;
+}
